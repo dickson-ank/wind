@@ -7,7 +7,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Query Assistant",
-  description: "Audio and text input with streamed responses",
+  description: "Shop Navigation Assistant",
   generator: "Dickson Ankamah",
 };
 
