@@ -5,14 +5,11 @@ const invokeUrl = "https://integrate.api.nvidia.com/v1/chat/completions";
 const stream = true;
 
 const headers = {
-  Authorization:
-    
+  Authorization: process.env.API_KEY,
+  Accept: stream ? "text/event-stream" : "application/json",
 };
 
-export const client = Promise.all([
-  Promise.resolve(null),
-  readFile("audio.wav"),
-])
+Promise.all([Promise.resolve(null), readFile("audio.wav")])
   .then(([imgData, audioData]) => {
     const audio_b64 = Buffer.from(audioData).toString("base64");
 

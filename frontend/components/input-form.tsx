@@ -3,6 +3,7 @@
 import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { convertWebmToWav } from "@/lib/convert-wav"
 import { Mic } from "lucide-react";
 
 interface InputFormProps {
@@ -57,8 +58,10 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
 
   const transcribeAudio = async (audioBlob: Blob) => {
     try {
+      const wavBlob = await convertWebmToWav(audioBlob);
+
       const formData = new FormData();
-      formData.append("audio", audioBlob);
+      formData.append("audio", wavBlob, "recording.wav");
 
       const res = await fetch("/api/transcribe", {
         method: "POST",
